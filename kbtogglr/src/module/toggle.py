@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
+#!/usr/bin/ENV python3
 """Toggle keyboard on or off with IDs passed as dictionary parameters"""
 from configparser import ConfigParser
 from os import path
 from subprocess import call
 from typing import Dict, Union, Optional
 
-from src.keyboard import Keyboard
+from src.module.keyboard import Keyboard
+from src.paths import ENV
 
 
 class Toggle(Keyboard):
@@ -14,17 +15,12 @@ class Toggle(Keyboard):
     def __init__(self) -> None:
         super().__init__()
         self.config = ConfigParser()
-        self.src = path.dirname(path.realpath(__file__))
-        self.package = path.dirname(self.src)
-        self.repo = path.dirname(self.package)
-        self.home = path.expanduser("~")
-        self.save_file = path.join(self.home, ".kbstatus")
-        self.images = path.join(self.repo, "docs", "_static")
+        self.env = ENV
 
     def __save_status(self, enabled: bool) -> None:
         # Save boolean value (on / off) in `.keyboard` dotfile in $HOME
         self.config["DEFAULT"] = {"enabled": enabled}
-        with open(self.save_file, "w") as file:
+        with open(self.env["save_file"], "w") as file:
             self.config.write(file)
 
     def __parse_status(self) -> str:
@@ -34,10 +30,10 @@ class Toggle(Keyboard):
         # if a file exists then the value which has been written into it
         # will be loaded into runtime
         # return True or False
-        if not path.isfile(self.save_file):
+        if not path.isfile(self.env["save_file"]):
             self.__save_status(True)
         else:
-            self.config.read(self.save_file)
+            self.config.read(self.env["save_file"])
         return self.config.getboolean("DEFAULT", "enabled")
 
     def get_args(
@@ -61,7 +57,7 @@ class Toggle(Keyboard):
             action = "Enabling"
             result = "Connected"
             xargs = f"reattach {ids['slave']} {ids['master']}"
-        icon_path = path.join(self.images, f"{icon}.png")
+        icon_path = path.join(self.env["images"], f"{icon}.png")
         notice = f'"{action} Keyboard..." \\ "{result}";'
         return {
             "status": stat,

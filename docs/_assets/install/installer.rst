@@ -1,7 +1,7 @@
-install
-=======
+installer
+=========
 
-.. automodule:: install
+.. automodule:: installer
    :members:
    :undoc-members:
    :show-inheritance:

@@ -5,7 +5,7 @@ README
 
 
 .. image:: https://travis-ci.org/jshwi/kbtogglr.svg?branch=master
-    :target: https://travis-ci.org/jshwi/kbtogglr
+    :target: https://travis-ci.org/jshwi/kbtogglr.svg?branch=master
     :alt: Build Status
 .. image:: https://codecov.io/github/jshwi/kbtogglr/coverage.svg?branch=master
     :target: https://codecov.io/github/jshwi/kbtogglr?branch=master
@@ -76,11 +76,18 @@ Whilst in the project root set up is as simple as running:
     $ python setup.py install
 ..
 
+To install with python setuptools as well:
+
+.. code-block:: console
+
+    $ python setup.py install --package
+..
+
 If you decide you want to uninstall KBTogglr:
 
 .. code-block:: console
 
-    $ python setup.py install --uninstall
+    $ python setup.py uninstall
 ..
 
 To run from the console:

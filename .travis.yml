@@ -50,7 +50,7 @@ script:
         echo "Documentation not for master - pushing skipped"
       fi
   - cd kbtogglr
-  - python3 -m pytest --cov=kbtogglr ../tests
+  - python3 -m pytest --cov=. ../tests
   - coverage xml
 after_success:
   - codecov --file coverage.xml --token 487c5247-def1-4604-9224-e0684fc54550

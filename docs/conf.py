@@ -6,6 +6,8 @@ import sys
 sys.path.insert(0, os.path.abspath('..'))  # noqa
 sys.path.insert(0, os.path.abspath('../kbtogglr'))  # noqa
 sys.path.insert(0, os.path.abspath('../kbtogglr/src'))  # noqa
+sys.path.insert(0, os.path.abspath('../kbtogglr/src/module'))  # noqa
+sys.path.insert(0, os.path.abspath('../kbtogglr/src/install'))  # noqa
 sys.path.insert(0, os.path.abspath('../kbtogglr/lib'))  # noqa
 import kbtogglr
 

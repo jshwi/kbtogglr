@@ -7,8 +7,9 @@ import setuptools
 
 import kbtogglr
 
-sys.path.insert(0, os.path.abspath('kbtogglr'))
-from src.install import Install, Uninstall  # noqa
+sys.path.insert(0, os.path.abspath('kbtogglr'))  # noqa
+from src.install.uninstaller import Uninstall
+from src.install.installer import Install
 
 
 def readme():
