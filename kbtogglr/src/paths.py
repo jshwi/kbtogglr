@@ -16,6 +16,8 @@ def environment() -> Dict[str, Union[bytes, str, PathLike]]:
     bin_ = path.join(local, "bin")
     applications = path.join(share, "applications")
     kbhome = path.join(home, ".kbtogglr")
+    home_docs = path.join(kbhome, "docs")
+    home_static = path.join(home_docs, "_static")
     kbpackage = path.join(kbhome, "kbtogglr")
     lib = path.join(kbpackage, "lib")
     # # files
@@ -47,7 +49,8 @@ def environment() -> Dict[str, Union[bytes, str, PathLike]]:
         "exec": exec_,
         "main": main,
         "template": template,
-        "kbhome": kbhome
+        "kbhome": kbhome,
+        "home_static": home_static
     }
 
 

@@ -25,7 +25,7 @@ class Desktop:
 
     def __configure_icon(self) -> None:
         print_color("  - Configuring icon location:")
-        icon = path.join(self.env["images"], "icon.png")
+        icon = path.join(self.env["home_static"], "icon.png")
         print(f"    Icon = \"{icon}\"")
         self.config["Desktop Entry"]["Icon"] = icon
 
