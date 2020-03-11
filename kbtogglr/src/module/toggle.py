@@ -17,13 +17,13 @@ class Toggle(Keyboard):
         self.config = ConfigParser()
         self.env = ENV
 
-    def __save_status(self, enabled: bool) -> None:
+    def _save_status(self, enabled: bool) -> None:
         # Save boolean value (on / off) in `.keyboard` dotfile in $HOME
         self.config["DEFAULT"] = {"enabled": enabled}
         with open(self.env["save_file"], "w") as file:
             self.config.write(file)
 
-    def __parse_status(self) -> str:
+    def _parse_status(self) -> str:
         # if no dotfile exists already then the script assumes this
         # hasn't been run before and sets `enabled` in to True in new
         # file
@@ -31,7 +31,7 @@ class Toggle(Keyboard):
         # will be loaded into runtime
         # return True or False
         if not path.isfile(self.env["save_file"]):
-            self.__save_status(True)
+            self._save_status(True)
         else:
             self.config.read(self.env["save_file"])
         return self.config.getboolean("DEFAULT", "enabled")
@@ -44,7 +44,7 @@ class Toggle(Keyboard):
 
         :param ids: Dictionary with `master` and `slave` IDs
         """
-        status = self.__parse_status()
+        status = self._parse_status()
         if status:
             stat = False
             icon = "off"
@@ -69,4 +69,4 @@ class Toggle(Keyboard):
         """run commands to toggle keyboard on or off"""
         call(cmd["notify"], shell=True)
         call(cmd["xinput"], shell=True)
-        self.__save_status(cmd["status"])
+        self._save_status(cmd["status"])

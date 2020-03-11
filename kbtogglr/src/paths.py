@@ -20,13 +20,13 @@ def environment() -> Dict[str, Union[bytes, str, PathLike]]:
     home_static = path.join(home_docs, "_static")
     kbpackage = path.join(kbhome, "kbtogglr")
     lib = path.join(kbpackage, "lib")
+    tmp = path.join("/tmp")
     # # files
     exec_ = path.join(bin_, "kbtogglr")
     desktop = path.join(applications, "kbtogglr.desktop")
     main = path.join(kbpackage, "__main__.py")
     template = path.join(lib, "template.desktop")
-    save_file = path.join(home, ".kbstatus")
-
+    save_file = path.join(tmp, "kbstatus")
     # relative
     # # dirs (no files)
     src = path.dirname(path.realpath(__file__))
