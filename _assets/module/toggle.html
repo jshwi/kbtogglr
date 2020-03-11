@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>toggle &#8212; kbtogglr 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/graphite.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="README" href="../readme_include.html" />
+    <link rel="prev" title="keyboard" href="keyboard.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../readme_include.html" title="README"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="keyboard.html" title="keyboard"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">kbtogglr 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../modules.html" >KBTogglr</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="module.html" accesskey="U">module</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-toggle">
+<span id="toggle"></span><h1>toggle<a class="headerlink" href="#module-toggle" title="Permalink to this headline">¶</a></h1>
+<p>Toggle keyboard on or off with IDs passed as dictionary parameters</p>
+<dl class="class">
+<dt id="toggle.Toggle">
+<em class="property">class </em><code class="sig-prename descclassname">toggle.</code><code class="sig-name descname">Toggle</code><a class="reference internal" href="../../_modules/toggle.html#Toggle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toggle.Toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">src.module.keyboard.Keyboard</span></code></p>
+<p>Toggle keyboard on and off</p>
+<dl class="method">
+<dt id="toggle.Toggle.get_args">
+<code class="sig-name descname">get_args</code><span class="sig-paren">(</span><em class="sig-param">ids: Dict[str</em>, <em class="sig-param">Optional[str]] = None</em><span class="sig-paren">)</span> &#x2192; Dict[str, Union[str, bool]]<a class="reference internal" href="../../_modules/toggle.html#Toggle.get_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toggle.Toggle.get_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a specific dictionary of command line arguments
+depending on whether keyboard is currently on or off</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ids</strong> – Dictionary with <cite>master</cite> and <cite>slave</cite> IDs</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="toggle.Toggle.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">cmd: Dict[str, Union[str, bool]]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../../_modules/toggle.html#Toggle.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toggle.Toggle.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>run commands to toggle keyboard on or off</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/icon.png" alt="Logo"/>
+            </a></p>
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">KBTogglr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme_include.html">README</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../readme_include.html" title="README"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="keyboard.html" title="keyboard"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">kbtogglr 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../modules.html" >KBTogglr</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="module.html" >module</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Stephen Whitlock.
+    </div>
+  </body>
+</html>
