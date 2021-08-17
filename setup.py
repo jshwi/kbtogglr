@@ -1,45 +1,36 @@
-#!/usr/bin/env python3
-"""setup.py for KBTogglr - install overridden and uninstall added"""
-import os
-import sys
+"""
+setup
+=====
 
+``setuptools`` for package.
+"""
 import setuptools
 
-import kbtogglr
-
-sys.path.insert(0, os.path.abspath('kbtogglr'))  # noqa
-from src.install.uninstaller import Uninstall
-from src.install.installer import Install
-
-
-def readme():
-    """Add readme to package metadata"""
-    with open("README.rst", "r") as file:
-        return file.read()
+with open("README.rst", "r") as readme:
+    README = readme.read()
 
 
 setuptools.setup(
-    name=kbtogglr.__project__,
-    version=kbtogglr.__version__,
-    license=kbtogglr.__license__,
-    author=kbtogglr.__author__,
-    author_email=kbtogglr.__email__,
-    description=(
-        "Toggle keyboard on and off - useful for using usb keyboards"
-    ),
-    long_description=readme(),
+    name="kbtogglr",
+    version="0.1.0",
+    description="Toggle keyboard on and off for xinput",
+    long_description=README,
     long_description_content_type="text/x-rst",
+    author="Stephen Whitlock",
+    author_email="stephen@jshwisolutions.com",
     url="https://github.com/jshwi/kbtogglr",
+    license="MIT",
+    platforms="GNU/Linux",
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        "Operating System :: POSIX :: Linux",
     ],
-    py_modules=["object_colors"],
-    packages=setuptools.find_packages(exclude=("tests",)),
+    keywords=["keyboard", "xorg", "xserver", "xinput"],
+    packages=setuptools.find_packages(exclude=["tests"]),
     include_package_data=True,
-    zip_safe=True,
-    install_requires=["pytest"],
-    python_requires='>=3.8',
-    cmdclass={"install": Install, "uninstall": Uninstall}
+    zip_safe=False,
+    entry_points={"console_scripts": ["kbtogglr=kbtogglr.__main__:main"]},
+    data_files=[("share/applications", ["kbtogglr/lib/template.desktop"])],
+    python_requires=">=3.8",
 )

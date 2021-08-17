@@ -1,0 +1,7 @@
+_.finalize_options  # unused method (kbtogglr/src/install/installer.py:64)
+_.finalize_options  # unused method (kbtogglr/src/install/uninstaller.py:58)
+_.initialize_options  # unused method (kbtogglr/src/install/installer.py:60)
+_.initialize_options  # unused method (kbtogglr/src/install/uninstaller.py:55)
+_.master  # unused attribute (kbtogglr/src/module/keyboard.py:15)
+_.optionxform  # unused attribute (kbtogglr/src/install/desktop.py:16)
+_.slave  # unused attribute (kbtogglr/src/module/keyboard.py:16)
