@@ -1,5 +1,5 @@
-KBTogglr Docs
-===================
+kbtogglr docs
+=============
 
 |
 
@@ -11,8 +11,10 @@ The source code is available `here <https://github.com/jshwi/kbtogglr>`_
    :maxdepth: 1
    :name: mastertoc
 
-   _assets/modules
-   _assets/readme_include
+   kbtogglr
+   kbtogglr.src.install
+   kbtogglr.src.module
+   readme
 
 * :ref:`genindex`
 
