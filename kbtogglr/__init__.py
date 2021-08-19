@@ -11,7 +11,7 @@ from typing import Dict, List, Optional
 
 import appdirs
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 
 ASSETS = Path(__file__).parent / "images"
 
