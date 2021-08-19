@@ -12,8 +12,6 @@ The source code is available `here <https://github.com/jshwi/kbtogglr>`_
    :name: mastertoc
 
    kbtogglr
-   kbtogglr.src.install
-   kbtogglr.src.module
    readme
 
 * :ref:`genindex`

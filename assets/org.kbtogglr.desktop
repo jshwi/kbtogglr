@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=KBTogglr
+Icon=org.gnome.Characters
+Comment=Keyboard toggler
+Exec=kbtogglr
+Version=1.0
+Type=Application
+Categories=Gnome;System;Hardware;Xinput
+Terminal=false
