@@ -7,7 +7,6 @@ import tempfile as _tempfile
 from configparser import ConfigParser as _ConfigParser
 from pathlib import Path as _Path
 from subprocess import run as _run
-from typing import Dict as _Dict
 from typing import List as _List
 from typing import Optional as _Optional
 
@@ -62,9 +61,9 @@ class _Lock:
             _os.remove(self.tempfile)
 
 
-def _get_id(value: str, output: _List[str]) -> str:
+def _get_id(value: str, output: str) -> str:
     # take the output and str value, and parse it for keyboard id
-    for line in output:
+    for line in output.splitlines():
         if value in line:
 
             # iterate over the keyboard data to find the ids within
@@ -90,19 +89,13 @@ def _xinput_list() -> str:
         raise CommandNotFoundError("xinput: command not found...") from err
 
 
-def _get_ids() -> _Dict[str, str]:
+def _get_ids() -> _List[str]:
     # capture the values of `xinput list` to find keyboard ids
     # loop over slave and master keyboards, searching for matched value
     # return replaced values with keyboard ids or raise `RuntimeError`
-    ids = {
-        "master": "Virtual core keyboard",
-        "slave": "AT Translated Set 2 keyboard",
-    }
+    patterns = "AT Translated Set 2 keyboard", "Virtual core keyboard"
     output = _xinput_list()
-    for key, value in ids.items():
-        ids[key] = _get_id(value, output.splitlines())
-
-    return ids
+    return [_get_id(i, output) for i in patterns]
 
 
 def _cache_dir() -> _Path:
@@ -139,11 +132,11 @@ def main() -> None:
 
     :raise RuntimeError: Raise if no keyboard ID can be parsed.
     """
-    ids = _get_ids()
+    slave, master = _get_ids()
     lock = _Lock(_cache_dir())
     if lock.acquired():
-        _toggle_on(ids["slave"], ids["master"])
+        _toggle_on(slave, master)
         lock.disable()
     else:
-        _toggle_off(ids["slave"])
+        _toggle_off(slave)
         lock.enable()
