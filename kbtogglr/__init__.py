@@ -1,7 +1,4 @@
-"""
-kbtogglr
-========
-"""
+"""Toggle on and off for laptop keyboard."""
 import os as _os
 import tempfile as _tempfile
 from pathlib import Path as _Path
@@ -69,19 +66,19 @@ class _Lock:
 
 
 def _get_id(value: str, output: str) -> str:
-    # take the output and str value, and parse it for keyboard id
+    # take the str value and parse output for its keyboard id
     for line in output.splitlines():
         if value in line:
 
-            # iterate over the keyboard data to find the ids within
-            # string return id or return None if id was not found
+            # iterate over the matching data and find the id declaration
             for split_line in line.split():
                 if "id=" in split_line:
 
                     # if a declaration of the id has been found split
-                    # the numerical id value from the rest of the string
+                    # the id from the rest of the string
                     return split_line.split("=")[1]
 
+    # no id has been returned and the script cannot continue
     raise RuntimeError("cannot detect keyboard id")
 
 
@@ -133,11 +130,31 @@ def _toggle_off(slave: str) -> None:
 
 
 def main() -> None:
-    """run commands to toggle keyboard on or off.
+    """Capture ``slave`` and ``master`` keyboard IDs.
 
-    Arguments depend on whether keyboard is currently on or off.
+    Determine whether lock-file exists. Create cache directory and
+    lock-file if it does not to signal to program that keyboard is off,
+    otherwise assume that the keyboard is on.
 
-    :raise RuntimeError: Raise if no keyboard ID can be parsed.
+    If the keyboard is off then the lock should be acquired.
+
+    Toggle on:
+
+        - Run ``xinput`` to reattach the keyboard IDs.
+        - Send notification to desktop indicating keyboard is enabled.
+
+    If the keyboard is on then the lock should not be acquired, either
+    because the keyboard has been toggled on, or the system has been
+    rebooted.
+
+    Toggle off:
+
+        - Run ``xinput`` to detach the ``slave`` ID.
+        - Send notification, including off image.
+
+    :raise CommandNotFoundError:    Requirement is not installed.
+    :raise RuntimeError:            No ID has been returned and the
+                                    script cannot continue.
     """
     slave, master = _get_ids()
     lock = _Lock(_cache_dir())
