@@ -1,5 +1,1 @@
-args  # unused variable (tests/_test.py:43)
-exc_tb  # unused variable (tests/_test.py:49)
-exc_type  # unused variable (tests/_test.py:49)
-exc_val  # unused variable (tests/_test.py:49)
-kwargs  # unused variable (tests/_test.py:43)
+

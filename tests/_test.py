@@ -3,13 +3,14 @@ test._test
 ==========
 """
 from pathlib import Path
-from typing import Any, Tuple
+from typing import Any
 
 # noinspection PyPackageRequirements
 import pytest
 
 import kbtogglr
 
+KBTOGGLR_RUN = "kbtogglr._run"
 XINPUT_LIST = """
 ⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
 ⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
@@ -37,64 +38,21 @@ XINPUT_LIST = """
 """
 
 
-class MockContext:
-    """Base class for simple ``with`` statements."""
+class _MockCompletedProcess:  # pylint: disable=too-few-public-methods
+    """Mock ``CompletedProcess`` object returned from ```run`."""
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        """Nothing to do."""
-
-    def __enter__(self) -> Any:
-        return self
-
-    def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None:
-        """Nothing to do."""
+    def __init__(self):
+        self.stdout = None
 
 
-class MockPopenXinputList(  # pylint: disable=too-few-public-methods
-    MockContext
-):
-    """Patch successful command."""
-
-    # noinspection PyMethodMayBeStatic
-    def communicate(self) -> Tuple[str, str]:  # pylint: disable=no-self-use
-        """Patch communicate to return ``xinput list``.
-
-        :return: Tuple of patched stdout and stderr.
-        """
-        return XINPUT_LIST, ""
+_mock_completed_process = _MockCompletedProcess()
 
 
-class MockPopenCommandNotFound(  # pylint: disable=too-few-public-methods
-    MockContext
-):
-    """Patch failed command."""
-
-    # noinspection PyMethodMayBeStatic
-    def communicate(self) -> Tuple[str, str]:  # pylint: disable=no-self-use
-        """Patch communicate to notify command not found.
-
-        :return: Tuple of patched stdout and stderr.
-        """
-        return "zsh: xinput: command not found...", ""
-
-
-def main(capsys: Any) -> str:
-    """Run the package's main function and return its output.
-
-    :param capsys:  Capture sys stdout and stderr.
-    :return:        Stripped capsys stdout result.
-    """
-    kbtogglr.main()
-    output = capsys.readouterr()
-    return output.out.strip()
-
-
-def test_success(tmp_path: Path, monkeypatch: Any, capsys: Any) -> None:
+def test_success(tmp_path: Path, monkeypatch: Any) -> None:
     """Test toggling of keyboard on and off.
 
     :param tmp_path:    Create and return temporary directory.
     :param monkeypatch: Mock patch environment and attributes.
-    :param capsys:      Capture sys stdout and stderr.
     """
     # set attrs
     # =========
@@ -102,32 +60,40 @@ def test_success(tmp_path: Path, monkeypatch: Any, capsys: Any) -> None:
     off_icon = images / "off.png"
     on_icon = images / "on.png"
     cache_dir = tmp_path / ".cache"
-    enable_expected = (
-        "xinput, reattach, 20, 3\n"
-        f"notify-send, -i, {on_icon}, Enabling Keyboard..., Connected"
-    )
-    disable_expected = (
-        "xinput, float, 20\n"
-        f"notify-send, -i, {off_icon}, Disabling Keyboard..., Disconnected"
-    )
+    enable_expected = [
+        "xinput, list",
+        "xinput, reattach, 20, 3",
+        f"notify-send, -i, {on_icon}, Enabling Keyboard..., Connected",
+    ]
+    disable_expected = [
+        "xinput, list",
+        "xinput, float, 20",
+        f"notify-send, -i, {off_icon}, Disabling Keyboard..., Disconnected",
+    ]
+
+    _mock_completed_process.stdout = XINPUT_LIST.encode()
+    called = []
+
+    def _run(cmd, *_, **__):
+        called.append(", ".join(cmd))
+        return _mock_completed_process
 
     # patch attrs
     # ===========
-    monkeypatch.setattr("kbtogglr._Popen", MockPopenXinputList)
+    monkeypatch.setattr(KBTOGGLR_RUN, _run)
     monkeypatch.setattr(
         "kbtogglr._appdirs.user_cache_dir", lambda x: str(cache_dir / x)
-    )
-    monkeypatch.setattr(
-        "kbtogglr._call", lambda x, *_, **__: print(", ".join(x))
     )
 
     # run tests
     # =========
     # test when toggling off
-    disable_output = main(capsys)
+    kbtogglr.main()
+    disable_output, called = called, []
 
     # test when toggling on
-    enable_output = main(capsys)
+    kbtogglr.main()
+    enable_output, called = called, []
 
     # run assertions
     # ==============
@@ -142,7 +108,8 @@ def test_failure(monkeypatch: Any) -> None:
 
     :param monkeypatch: Mock patch environment and attributes.
     """
-    monkeypatch.setattr("kbtogglr._Popen", MockPopenCommandNotFound)
+    _mock_completed_process.stdout = b"zsh: xinput: command not found..."
+    monkeypatch.setattr(KBTOGGLR_RUN, lambda *_, **__: _mock_completed_process)
     with pytest.raises(RuntimeError) as err:
         kbtogglr.main()
 

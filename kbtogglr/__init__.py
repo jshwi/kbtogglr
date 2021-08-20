@@ -6,9 +6,7 @@ import os as _os
 import tempfile as _tempfile
 from configparser import ConfigParser as _ConfigParser
 from pathlib import Path as _Path
-from subprocess import PIPE as _PIPE
-from subprocess import Popen as _Popen
-from subprocess import call as _call
+from subprocess import run as _run
 from typing import Dict as _Dict
 from typing import List as _List
 from typing import Optional as _Optional
@@ -85,13 +83,10 @@ def _get_ids() -> _Dict[str, str]:
         "master": "Virtual core keyboard",
         "slave": "AT Translated Set 2 keyboard",
     }
-    with _Popen(
-        ["xinput", "list"], stdout=_PIPE, bufsize=1, universal_newlines=True
-    ) as proc:
-        output = proc.communicate()[0].splitlines()
-
+    proc = _run(["xinput", "list"], capture_output=True, check=True)
+    output = proc.stdout.decode()
     for key, value in ids.items():
-        ids[key] = _get_id(value, output)
+        ids[key] = _get_id(value, output.splitlines())
 
     return ids
 
@@ -106,15 +101,21 @@ def _cache_dir() -> _Path:
 def _toggle_on(slave: str, master: str) -> None:
     # run `xinput` to reattach the slave and master keyboard ids
     # send notification, including on image
-    _call(["xinput", "reattach", slave, master])
-    _call(["notify-send", "-i", _ON, "Enabling Keyboard...", "Connected"])
+    _run(["xinput", "reattach", slave, master], check=True)
+    _run(
+        ["notify-send", "-i", _ON, "Enabling Keyboard...", "Connected"],
+        check=True,
+    )
 
 
 def _toggle_off(slave: str) -> None:
     # run `xinput` to detach the slave device
     # send notification, including off image
-    _call(["xinput", "float", slave])
-    _call(["notify-send", "-i", _OFF, "Disabling Keyboard...", "Disconnected"])
+    _run(["xinput", "float", slave], check=True)
+    _run(
+        ["notify-send", "-i", _OFF, "Disabling Keyboard...", "Disconnected"],
+        check=True,
+    )
 
 
 def main() -> None:
