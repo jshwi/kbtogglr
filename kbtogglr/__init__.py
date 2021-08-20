@@ -96,6 +96,27 @@ def _get_ids() -> _Dict[str, str]:
     return ids
 
 
+def _cache_dir() -> _Path:
+    # create and return cache dir
+    cache_dir = _Path(_appdirs.user_cache_dir(__name__))
+    cache_dir.mkdir(exist_ok=True, parents=True)
+    return cache_dir
+
+
+def _toggle_on(slave: str, master: str) -> None:
+    # run `xinput` to reattach the slave and master keyboard ids
+    # send notification, including on image
+    _call(["xinput", "reattach", slave, master])
+    _call(["notify-send", "-i", _ON, "Enabling Keyboard...", "Connected"])
+
+
+def _toggle_off(slave: str) -> None:
+    # run `xinput` to detach the slave device
+    # send notification, including off image
+    _call(["xinput", "float", slave])
+    _call(["notify-send", "-i", _OFF, "Disabling Keyboard...", "Disconnected"])
+
+
 def main() -> None:
     """run commands to toggle keyboard on or off.
 
@@ -104,19 +125,10 @@ def main() -> None:
     :raise RuntimeError: Raise if no keyboard ID can be parsed.
     """
     ids = _get_ids()
-    cache_dir = _Path(_appdirs.user_cache_dir(__name__))
-    cache_dir.mkdir(exist_ok=True, parents=True)
-    lock = _Lock(cache_dir)
-    notify = ["notify-send", "-i"]
-    xinput = ["xinput"]
+    lock = _Lock(_cache_dir())
     if lock.acquired():
-        notify.extend([_ON, "Enabling Keyboard...", "Connected"])
-        xinput.extend(["reattach", ids["slave"], ids["master"]])
+        _toggle_on(ids["slave"], ids["master"])
         lock.disable()
     else:
-        notify.extend([_OFF, "Disabling Keyboard...", "Disconnected"])
-        xinput.extend(["float", ids["slave"]])
+        _toggle_off(ids["slave"])
         lock.enable()
-
-    _call(notify)
-    _call(xinput)

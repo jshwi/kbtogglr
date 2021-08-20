@@ -103,12 +103,12 @@ def test_success(tmp_path: Path, monkeypatch: Any, capsys: Any) -> None:
     on_icon = images / "on.png"
     cache_dir = tmp_path / ".cache"
     enable_expected = (
-        f"notify-send, -i, {on_icon}, Enabling Keyboard..., Connected\n"
-        "xinput, reattach, 20, 3"
+        "xinput, reattach, 20, 3\n"
+        f"notify-send, -i, {on_icon}, Enabling Keyboard..., Connected"
     )
     disable_expected = (
-        f"notify-send, -i, {off_icon}, Disabling Keyboard..., Disconnected\n"
-        "xinput, float, 20"
+        "xinput, float, 20\n"
+        f"notify-send, -i, {off_icon}, Disabling Keyboard..., Disconnected"
     )
 
     # patch attrs
