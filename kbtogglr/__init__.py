@@ -2,30 +2,36 @@
 kbtogglr
 ========
 """
-import os
-import tempfile
-from configparser import ConfigParser
-from pathlib import Path
-from subprocess import PIPE, Popen, call
-from typing import Dict, List, Optional
+import os as _os
+import tempfile as _tempfile
+from configparser import ConfigParser as _ConfigParser
+from pathlib import Path as _Path
+from subprocess import PIPE as _PIPE
+from subprocess import Popen as _Popen
+from subprocess import call as _call
+from typing import Dict as _Dict
+from typing import List as _List
+from typing import Optional as _Optional
 
-import appdirs
+import appdirs as _appdirs
 
 __version__ = "1.0.0"
 
-ASSETS = Path(__file__).parent / "images"
+_IMAGES = _Path(__file__).parent / "images"
+_ON = str(_IMAGES / "on.png")
+_OFF = str(_IMAGES / "off.png")
 
 
-class Lock:
+class _Lock:
     """Create lock file to signal to program whether keyboard is on.
 
     :param lock_dir: Directory to search and add lock file.
     """
 
-    def __init__(self, lock_dir: Path) -> None:
-        self.tempfile: Optional[Path] = None
+    def __init__(self, lock_dir: _Path) -> None:
+        self.tempfile: _Optional[_Path] = None
         self.lock_file = lock_dir / "lock"
-        self.config = ConfigParser()
+        self.config = _ConfigParser()
 
     def acquired(self) -> bool:
         """Return whether lock has been acquired.
@@ -36,14 +42,14 @@ class Lock:
             self.config.read(self.lock_file)
             path = self.config["DEFAULT"].get("path")
             if path is not None:
-                self.tempfile = Path(path)
+                self.tempfile = _Path(path)
                 return self.tempfile.is_file()
 
         return False
 
     def enable(self) -> None:
         """Enable lock."""
-        self.tempfile = Path(tempfile.mkstemp()[1])
+        self.tempfile = _Path(_tempfile.mkstemp()[1])
         self.config["DEFAULT"]["path"] = str(self.tempfile)
         with open(self.lock_file, "w") as fout:
             self.config.write(fout)
@@ -51,10 +57,10 @@ class Lock:
     def disable(self) -> None:
         """Disable lock."""
         if self.tempfile is not None:
-            os.remove(self.tempfile)
+            _os.remove(self.tempfile)
 
 
-def _get_id(value: str, output: List[str]) -> str:
+def _get_id(value: str, output: _List[str]) -> str:
     # take the output and str value, and parse it for keyboard id
     for line in output:
         if value in line:
@@ -71,7 +77,7 @@ def _get_id(value: str, output: List[str]) -> str:
     raise RuntimeError("cannot detect keyboard id")
 
 
-def _get_ids() -> Dict[str, str]:
+def _get_ids() -> _Dict[str, str]:
     # capture the values of `xinput list` to find keyboard ids
     # loop over slave and master keyboards, searching for matched value
     # return replaced values with keyboard ids or raise `RuntimeError`
@@ -79,8 +85,8 @@ def _get_ids() -> Dict[str, str]:
         "master": "Virtual core keyboard",
         "slave": "AT Translated Set 2 keyboard",
     }
-    with Popen(
-        ["xinput", "list"], stdout=PIPE, bufsize=1, universal_newlines=True
+    with _Popen(
+        ["xinput", "list"], stdout=_PIPE, bufsize=1, universal_newlines=True
     ) as proc:
         output = proc.communicate()[0].splitlines()
 
@@ -98,23 +104,19 @@ def main() -> None:
     :raise RuntimeError: Raise if no keyboard ID can be parsed.
     """
     ids = _get_ids()
-    cache_dir = Path(appdirs.user_cache_dir(__name__))
+    cache_dir = _Path(_appdirs.user_cache_dir(__name__))
     cache_dir.mkdir(exist_ok=True, parents=True)
-    lock = Lock(cache_dir)
+    lock = _Lock(cache_dir)
     notify = ["notify-send", "-i"]
     xinput = ["xinput"]
     if lock.acquired():
-        notify.extend(
-            [str(ASSETS / "on.png"), "Enabling Keyboard...", "Connected"]
-        )
+        notify.extend([_ON, "Enabling Keyboard...", "Connected"])
         xinput.extend(["reattach", ids["slave"], ids["master"]])
         lock.disable()
     else:
-        notify.extend(
-            [str(ASSETS / "off.png"), "Disabling Keyboard...", "Disconnected"]
-        )
+        notify.extend([_OFF, "Disabling Keyboard...", "Disconnected"])
         xinput.extend(["float", ids["slave"]])
         lock.enable()
 
-    call(notify)
-    call(xinput)
+    _call(notify)
+    _call(xinput)

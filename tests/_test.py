@@ -98,9 +98,9 @@ def test_success(tmp_path: Path, monkeypatch: Any, capsys: Any) -> None:
     """
     # set attrs
     # =========
-    assets = kbtogglr.ASSETS
-    off_icon = assets / "off.png"
-    on_icon = assets / "on.png"
+    images = Path(__file__).parent.parent / "kbtogglr" / "images"
+    off_icon = images / "off.png"
+    on_icon = images / "on.png"
     cache_dir = tmp_path / ".cache"
     enable_expected = (
         f"notify-send, -i, {on_icon}, Enabling Keyboard..., Connected\n"
@@ -113,12 +113,12 @@ def test_success(tmp_path: Path, monkeypatch: Any, capsys: Any) -> None:
 
     # patch attrs
     # ===========
-    monkeypatch.setattr("kbtogglr.Popen", MockPopenXinputList)
+    monkeypatch.setattr("kbtogglr._Popen", MockPopenXinputList)
     monkeypatch.setattr(
-        "kbtogglr.appdirs.user_cache_dir", lambda x: str(cache_dir / x)
+        "kbtogglr._appdirs.user_cache_dir", lambda x: str(cache_dir / x)
     )
     monkeypatch.setattr(
-        "kbtogglr.call", lambda x, *_, **__: print(", ".join(x))
+        "kbtogglr._call", lambda x, *_, **__: print(", ".join(x))
     )
 
     # run tests
@@ -142,7 +142,7 @@ def test_failure(monkeypatch: Any) -> None:
 
     :param monkeypatch: Mock patch environment and attributes.
     """
-    monkeypatch.setattr("kbtogglr.Popen", MockPopenCommandNotFound)
+    monkeypatch.setattr("kbtogglr._Popen", MockPopenCommandNotFound)
     with pytest.raises(RuntimeError) as err:
         kbtogglr.main()
 
