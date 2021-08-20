@@ -114,3 +114,19 @@ def test_failure(monkeypatch: Any) -> None:
         kbtogglr.main()
 
     assert str(err.value) == "cannot detect keyboard id"
+
+
+def test_command_not_found_error(monkeypatch: Any) -> None:
+    """Test result when `xinput` is not installed.
+
+    :param monkeypatch: Mock patch environment and attributes.
+    """
+
+    def _run(*_, **__):
+        raise FileNotFoundError("[Errno 2] No such file or directory")
+
+    monkeypatch.setattr(KBTOGGLR_RUN, _run)
+    with pytest.raises(FileNotFoundError) as err:
+        kbtogglr.main()
+
+    assert str(err.value) == "xinput: command not found..."

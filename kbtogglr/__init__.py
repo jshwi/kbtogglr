@@ -20,6 +20,10 @@ _ON = str(_IMAGES / "on.png")
 _OFF = str(_IMAGES / "off.png")
 
 
+class CommandNotFoundError(FileNotFoundError):
+    """Raise if ``xinput`` has not been installed."""
+
+
 class _Lock:
     """Create lock file to signal to program whether keyboard is on.
 
@@ -75,6 +79,17 @@ def _get_id(value: str, output: _List[str]) -> str:
     raise RuntimeError("cannot detect keyboard id")
 
 
+def _xinput_list() -> str:
+    # return the output of `xinput list`
+    # if `FileNotFoundError` is raised, catch it and return a more
+    # user-friendly `CommandNotFoundError`
+    try:
+        proc = _run(["xinput", "list"], capture_output=True, check=True)
+        return proc.stdout.decode()
+    except FileNotFoundError as err:
+        raise CommandNotFoundError("xinput: command not found...") from err
+
+
 def _get_ids() -> _Dict[str, str]:
     # capture the values of `xinput list` to find keyboard ids
     # loop over slave and master keyboards, searching for matched value
@@ -83,8 +98,7 @@ def _get_ids() -> _Dict[str, str]:
         "master": "Virtual core keyboard",
         "slave": "AT Translated Set 2 keyboard",
     }
-    proc = _run(["xinput", "list"], capture_output=True, check=True)
-    output = proc.stdout.decode()
+    output = _xinput_list()
     for key, value in ids.items():
         ids[key] = _get_id(value, output.splitlines())
 

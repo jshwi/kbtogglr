@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased](https://github.com/jshwi/kbtogglr/compare/v1.0.0...HEAD)
 ------------------------------------------------------------------------
+### Added
+- Raises `CommandNotFoundError` if `xinput` is not installed
+
 ### Changed
 - Edits scope: Only `main` is public
 
