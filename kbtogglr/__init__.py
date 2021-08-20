@@ -4,7 +4,6 @@ kbtogglr
 """
 import os as _os
 import tempfile as _tempfile
-from configparser import ConfigParser as _ConfigParser
 from pathlib import Path as _Path
 from subprocess import run as _run
 from typing import List as _List
@@ -26,37 +25,45 @@ class CommandNotFoundError(FileNotFoundError):
 class _Lock:
     """Create lock file to signal to program whether keyboard is on.
 
+    Determine whether lock-file exists. If lock-file exists then read it
+    for the path to the secured temp file, otherwise leave the value as
+    None. If for some reason the path key does not exist continue, as
+    this can be enabled later.
+
+    This is intentionally ambiguous as `xinput` resets automatically
+    after a reboot, as will the lock.
+
     :param lock_dir: Directory to search and add lock file.
     """
 
     def __init__(self, lock_dir: _Path) -> None:
         self.tempfile: _Optional[_Path] = None
         self.lock_file = lock_dir / "lock"
-        self.config = _ConfigParser()
+        if self.lock_file.is_file():
+            with open(self.lock_file) as fin:
+                self.tempfile = _Path(fin.read())
 
     def acquired(self) -> bool:
-        """Return whether lock has been acquired.
+        """Determine whether lock-file exists.
 
-        :return: Lock acquired? True or False.
+        :return: Return whether lock has been acquired. True or False.
         """
-        if self.lock_file.is_file():
-            self.config.read(self.lock_file)
-            path = self.config["DEFAULT"].get("path")
-            if path is not None:
-                self.tempfile = _Path(path)
-                return self.tempfile.is_file()
+        if self.tempfile is not None:
+            return self.tempfile.is_file()
 
         return False
 
     def enable(self) -> None:
-        """Enable lock."""
-        self.tempfile = _Path(_tempfile.mkstemp()[1])
-        self.config["DEFAULT"]["path"] = str(self.tempfile)
+        """Enable lock.
+
+        Create a new secure temp file and save the path to the lock.
+        """
+
         with open(self.lock_file, "w") as fout:
-            self.config.write(fout)
+            fout.write(_tempfile.mkstemp()[1])
 
     def disable(self) -> None:
-        """Disable lock."""
+        """Disable lock, if one exists."""
         if self.tempfile is not None:
             _os.remove(self.tempfile)
 
