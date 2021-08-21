@@ -8,7 +8,7 @@ from typing import Optional as _Optional
 
 import appdirs as _appdirs
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 _IMAGES = _Path(__file__).parent / "images"
 _ON = str(_IMAGES / "on.png")
