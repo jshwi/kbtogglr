@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Raises `CommandNotFoundError` if `xinput` is not installed
 
 ### Changed
+- Updates .desktop entry
 - Removes `ConfigParser` for plain text
 - Edits scope: Only `main` is public
 
