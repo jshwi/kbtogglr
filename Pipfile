@@ -8,7 +8,7 @@ object-colors = "==2.0.1"
 
 [dev-packages]
 bump2version = "==1.0.1"
-freezegun = "==0.1.11"
+freezegun = "==1.1.0"
 grip = "==4.5.2"
 kbtogglr = {editable = true, path = "."}
 pyaud = "==3.2.7"
