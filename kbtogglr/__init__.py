@@ -37,7 +37,7 @@ class _Lock:
         self.tempfile: _Optional[_Path] = None
         self.lock_file = lock_dir / "lock"
         if self.lock_file.is_file():
-            with open(self.lock_file) as fin:
+            with open(self.lock_file, encoding="utf-8") as fin:
                 self.tempfile = _Path(fin.read())
 
     def acquired(self) -> bool:
@@ -56,7 +56,7 @@ class _Lock:
         Create a new secure temp file and save the path to the lock.
         """
 
-        with open(self.lock_file, "w") as fout:
+        with open(self.lock_file, "w", encoding="utf-8") as fout:
             fout.write(_tempfile.mkstemp()[1])
 
     def disable(self) -> None:
