@@ -47,11 +47,11 @@ pkginfo==1.7.1
 platformdirs==2.4.0
 pluggy==1.0.0
 py==1.10.0
-pyaud==3.2.7
+pyaud==3.2.8
 pycparser==2.20
 pygments==2.8.1
 pylint==2.11.1
-pyparsing==2.4.7
+pyparsing==3.0.1
 pytest-cov==3.0.0
 pytest-randomly==3.10.1
 pytest-sugar==0.9.4
