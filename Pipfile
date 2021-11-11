@@ -12,7 +12,7 @@ freezegun = "==1.1.0"
 grip = "==4.5.2"
 kbtogglr = {editable = true, path = "."}
 pyaud = "==3.2.9"
-pytest-randomly = "==3.10.1"
+pytest-randomly = "==3.10.2"
 pytest-sugar = "==0.9.4"
 restview = "==2.9.2"
 twine = "==3.5.0"
