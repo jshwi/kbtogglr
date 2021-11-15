@@ -2,7 +2,7 @@
 alabaster==0.7.12
 appdirs==1.4.4
 astor==0.8.1
-astroid==2.8.4
+astroid==2.8.5
 attrs==21.2.0
 babel==2.9.1
 black==21.7b0
@@ -47,7 +47,7 @@ pkginfo==1.7.1
 platformdirs==2.4.0
 pluggy==1.0.0
 py==1.11.0
-pyaud==3.2.9
+pyaud==3.2.10
 pycparser==2.21
 pygments==2.8.1
 pylint==2.11.1
@@ -57,7 +57,7 @@ pytest-randomly==3.10.2
 pytest-sugar==0.9.4
 pytest==6.2.5
 python-dateutil==2.8.2
-python-dotenv==0.19.1
+python-dotenv==0.19.2
 pytz==2021.3
 readme-renderer==30.0
 readmetester==1.0.1
@@ -83,7 +83,7 @@ toml==0.10.2
 tomli==1.2.2
 tqdm==4.62.3
 twine==3.6.0
-typing-extensions==3.10.0.2
+typing-extensions==4.0.0
 untokenize==0.1.1
 urllib3==1.26.7
 vulture==2.3
