@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ba853fcd45e28b294e425c641d7ba904b17c5b8b701e277d18b0e1f797f7c4a5"
+            "sha256": "bdf614c8cb9a1f79187ba0393d263847e0c4e0a704d63a7fc2648978627e2b21"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -201,7 +201,7 @@
         },
         "coverage": {
             "extras": [
-                "toml"
+
             ],
             "hashes": [
                 "sha256:01774a2c2c729619760320270e42cd9e797427ecfddd32c2a7b639cdc481f3c0",
@@ -687,11 +687,11 @@
         },
         "pytest-randomly": {
             "hashes": [
-                "sha256:2c0a332c4b124e372e2473803bcc91ec87797664f4955afef2b844c0021662b1",
-                "sha256:cbd5c50b7c41491c202c71a3df33a75619d610a4f5c34aa2bd02ac30fce7cd43"
+                "sha256:22154cdcff7ba44e0599596490e6b75278ca973a33812ea6a54bf14d0b042ef1",
+                "sha256:b05a7a45f54cae2b5095752c6a10cb559df84448421b0420ae492dd2fb1727ef"
             ],
             "index": "pypi",
-            "version": "==3.10.2"
+            "version": "==3.10.3"
         },
         "pytest-sugar": {
             "hashes": [
@@ -847,6 +847,10 @@
             ],
             "version": "==1.5.0"
         },
+        "sanitized-package": {
+            "editable": true,
+            "path": "."
+        },
         "secretstorage": {
             "hashes": [
                 "sha256:422d82c36172d88d6a0ed5afdec956514b189ddbfb72fefab0c8a1cee4eaf71f",
@@ -854,6 +858,14 @@
             ],
             "markers": "sys_platform == 'linux'",
             "version": "==3.3.1"
+        },
+        "setuptools": {
+            "hashes": [
+                "sha256:b4c634615a0cf5b02cf83c7bedffc8da0ca439f00e79452699454da6fbd4153d",
+                "sha256:feb5ff19b354cde9efd2344ef6d5e79880ce4be643037641b49508bbb850d060"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==59.4.0"
         },
         "six": {
             "hashes": [
@@ -983,7 +995,7 @@
                 "sha256:2cdf80e4e04866a9b3689a51869016d36db0814d84b8d8a568d22781d45d27ed",
                 "sha256:829704698b22e13ec9eaf959122315eabb370b0884400e9818334d8b677023d9"
             ],
-            "markers": "python_version < '3.10'",
+            "markers": "python_version >= '3.6'",
             "version": "==4.0.0"
         },
         "untokenize": {
