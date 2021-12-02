@@ -43,7 +43,7 @@ packaging==21.3
 path-and-address==2.0.1
 pathspec==0.9.0
 pipfile-requirements==0.3.0
-pkginfo==1.8.1
+pkginfo==1.8.2
 platformdirs==2.4.0
 pluggy==1.0.0
 py==1.11.0
@@ -82,7 +82,7 @@ termcolor==1.1.0
 toml==0.10.2
 tomli==1.2.2
 tqdm==4.62.3
-twine==3.6.0
+twine==3.7.0
 typing-extensions==4.0.1
 untokenize==0.1.1
 urllib3==1.26.7
