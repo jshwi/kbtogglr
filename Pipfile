@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 appdirs = "==1.4.4"
-object-colors = "==2.0.1"
 
 [dev-packages]
 bump2version = "==1.0.1"
