@@ -12,7 +12,7 @@ with open("README.rst", "r") as readme:
 
 setuptools.setup(
     name="kbtogglr",
-    version="1.1.0",
+    version="1.1.1",
     description="Toggle keyboard on and off for xinput",
     long_description=README,
     long_description_content_type="text/x-rst",
