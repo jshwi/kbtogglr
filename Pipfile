@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+appdirs = "==1.4.4"
 object-colors = "==2.0.1"
 
 [dev-packages]
