@@ -2,7 +2,7 @@
 alabaster==0.7.12
 appdirs==1.4.4
 astor==0.8.1
-astroid==2.9.2
+astroid==2.9.3
 attrs==21.4.0
 babel==2.9.1
 black==21.12b0
@@ -21,7 +21,7 @@ docopt==0.6.2
 docutils==0.17.1
 environs==9.4.0
 flask==2.0.2
-flynt==0.70
+flynt==0.75
 freezegun==1.1.0
 grip==4.5.2
 idna==3.3
@@ -51,7 +51,7 @@ pkginfo==1.8.2
 platformdirs==2.4.1
 pluggy==1.0.0
 py==1.11.0
-pyaud==3.6.0
+pyaud==3.8.0
 pycparser==2.21
 pygments==2.8.1
 pylint==2.12.2
@@ -66,9 +66,9 @@ pytz==2021.3
 readme-renderer==32.0
 readmetester==1.0.1
 requests-toolbelt==0.9.1
-requests==2.27.0
+requests==2.27.1
 restview==2.9.3
-rfc3986==1.5.0
+rfc3986==2.0.0
 secretstorage==3.3.1
 six==1.16.0
 snowballstemmer==2.2.0
@@ -88,7 +88,7 @@ tqdm==4.62.3
 twine==3.7.1
 typing-extensions==4.0.1
 untokenize==0.1.1
-urllib3==1.26.7
+urllib3==1.26.8
 vulture==2.3
 webencodings==0.5.1
 werkzeug==2.0.2
