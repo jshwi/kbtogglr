@@ -27,7 +27,7 @@ domdf-python-tools==3.2.2.post1
 environs==9.5.0
 flask==2.1.1
 flynt==0.76
-freezegun==1.1.0
+freezegun==1.2.1
 gitspy==0.1.1
 grip==4.5.2
 handy-archives==0.1.2
