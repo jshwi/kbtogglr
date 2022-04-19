@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4f6495d4d652698d86162fd27f4fd3a4c63476f0e6db6e7e1292ae4b0a58f7e4"
+            "sha256": "5c758fa0701f3e2713169785a93748494e21b66b02fa8b136d23e12174db7c68"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -375,11 +375,11 @@
         },
         "freezegun": {
             "hashes": [
-                "sha256:177f9dd59861d871e27a484c3332f35a6e3f5d14626f2bf91be37891f18927f3",
-                "sha256:2ae695f7eb96c62529f03a038461afe3c692db3465e215355e1bb4b0ab408712"
+                "sha256:15103a67dfa868ad809a8f508146e396be2995172d25f927e48ce51c0bf5cb09",
+                "sha256:b4c64efb275e6bc68dc6e771b17ffe0ff0f90b81a2a5189043550b6519926ba4"
             ],
             "index": "pypi",
-            "version": "==1.1.0"
+            "version": "==1.2.1"
         },
         "gitspy": {
             "hashes": [
@@ -1023,7 +1023,7 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_version >= '3.6'",
+            "markers": "python_version < '3.11'",
             "version": "==2.0.1"
         },
         "tomlkit": {
