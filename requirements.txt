@@ -96,8 +96,10 @@ sphinxcontrib-programoutput==0.17
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.5
 termcolor==1.1.0
+toml-sort==0.20.0
 toml==0.10.2
 tomli==2.0.1
+tomlkit==0.10.1
 tqdm==4.64.0
 twine==3.7.1
 typing-extensions==4.2.0
