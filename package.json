@@ -1,0 +1,54 @@
+{
+  "name": "kbtogglr",
+  "version": "1.1.1",
+  "description": "Intuitive Git for Python",
+  "private": true,
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "toml:sort": "pipenv run toml-sort pyproject.toml --in-place --all",
+    "audit": "npm-run-all audit:* && npm run toml:sort && npm run test:doctest:readme",
+    "audit:misc": "npx prettier -c .",
+    "audit:py": "pipenv run pyaud audit --deploy --rcfile .github/pyaud.toml",
+    "bump:major": "pipenv run bump2version major",
+    "bump:minor": "pipenv run bump2version minor",
+    "bump:patch": "pipenv run bump2version patch",
+    "clean": "pipenv run pyaud clean",
+    "format": "npm-run-all format:*",
+    "format:misc": "prettier -w .",
+    "format:py": "npm-run-all format:py:*",
+    "format:py:code": "pipenv run pyaud format",
+    "format:py:docs": "pipenv run pyaud format-docs",
+    "format:py:str": "pipenv run pyaud format-str",
+    "lint": "pipenv run pyaud lint",
+    "test": "npm-run-all test:**",
+    "test:doctest:package": "pipenv run sphinx-build -M doctest docs/ docs/_build",
+    "test:doctest:readme": "pipenv run python -m doctest README.rst",
+    "test:unit": "pipenv run pyaud tests",
+    "types": "pipenv run pyaud typecheck"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jshwi/kbtogglr.git"
+  },
+  "keywords": [
+    "python3.8",
+    "git",
+    "commandline",
+    "wrapper",
+    "script",
+    "tree"
+  ],
+  "author": "Stephen Whitlock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jshwi/kbtogglr/issues"
+  },
+  "homepage": "https://jshwi.github.io/kbtogglr/",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1"
+  }
+}
