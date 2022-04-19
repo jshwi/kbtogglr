@@ -3,6 +3,9 @@ kbtogglr
 .. image:: https://github.com/jshwi/kbtogglr/workflows/build/badge.svg
     :target: https://github.com/jshwi/kbtogglr/workflows/build/badge.svg
     :alt: audit
+.. image:: https://github.com/jshwi/kbtogglr/actions/workflows/codeql-analysis.yml/badge.svg
+    :target: https://github.com/jshwi/kbtogglr/actions/workflows/codeql-analysis.yml
+    :alt: CodeQL
 .. image:: https://img.shields.io/badge/python-3.8-blue.svg
     :target: https://www.python.org/downloads/release/python-380
     :alt: python3.8
