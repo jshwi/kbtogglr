@@ -3,7 +3,7 @@ alabaster==0.7.12
 apeye==1.2.0
 appdirs==1.4.4
 astor==0.8.1
-astroid==2.11.4
+astroid==2.12.9
 attrs==21.4.0
 babel==2.10.1
 black==22.3.0
