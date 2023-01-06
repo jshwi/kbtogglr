@@ -18,7 +18,7 @@ colorama==0.4.4
 commonmark==0.9.1
 constcheck==0.4.1
 coverage==6.3.2
-cryptography==37.0.1
+cryptography==38.0.3
 dill==0.3.4
 dist-meta==0.3.4
 docformatter==1.4
