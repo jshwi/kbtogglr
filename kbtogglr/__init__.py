@@ -1,4 +1,4 @@
-"""Toggle on and off for laptop keyboard."""
+"""Toggle keyboard on and off."""
 import os as _os
 import tempfile as _tempfile
 from pathlib import Path as _Path
