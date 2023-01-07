@@ -13,6 +13,7 @@ __version__ = "1.1.1"
 _IMAGES = _Path(__file__).parent / "images"
 _ON = str(_IMAGES / "on.png")
 _OFF = str(_IMAGES / "off.png")
+_XINPUT = "xinput"
 
 
 class CommandNotFoundError(FileNotFoundError):
@@ -87,7 +88,7 @@ def _xinput_list() -> str:
     # if `FileNotFoundError` is raised, catch it and return a more
     # user-friendly `CommandNotFoundError`
     try:
-        proc = _run(["xinput", "list"], capture_output=True, check=True)
+        proc = _run([_XINPUT, "list"], capture_output=True, check=True)
         return proc.stdout.decode()
     except FileNotFoundError as err:
         raise CommandNotFoundError("xinput: command not found...") from err
@@ -112,7 +113,7 @@ def _cache_dir() -> _Path:
 def _toggle_on(slave: str, master: str) -> None:
     # run `xinput` to reattach the slave and master keyboard ids
     # send notification, including on image
-    _run(["xinput", "reattach", slave, master], check=True)
+    _run([_XINPUT, "reattach", slave, master], check=True)
     _run(
         ["notify-send", "-i", _ON, "Enabling Keyboard...", "Connected"],
         check=True,
@@ -122,7 +123,7 @@ def _toggle_on(slave: str, master: str) -> None:
 def _toggle_off(slave: str) -> None:
     # run `xinput` to detach the slave device
     # send notification, including off image
-    _run(["xinput", "float", slave], check=True)
+    _run([_XINPUT, "float", slave], check=True)
     _run(
         ["notify-send", "-i", _OFF, "Disabling Keyboard...", "Disconnected"],
         check=True,
