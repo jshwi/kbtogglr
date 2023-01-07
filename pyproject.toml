@@ -51,14 +51,10 @@ python = "^3.8"
 
 [tool.poetry.group.dev.dependencies]
 bump2version = "^1.0.1"
-freezegun = "^1.2.1"
-grip = "^4.5.2"
+ipython = "^8.6.0"
 pyaud = "^3.13.3"
 pytest-randomly = "^3.11.0"
-pytest-sugar = "^0.9.4"
 restview = "^3.0.0"
-toml-sort = "^0.20.0"
-twine = "^4.0.0"
 
 [tool.poetry.scripts]
 kbtogglr = "kbtogglr.__main__:main"
