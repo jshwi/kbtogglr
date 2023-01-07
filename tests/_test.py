@@ -10,7 +10,7 @@ import pytest
 
 import kbtogglr
 
-KBTOGGLR_RUN = "kbtogglr._run"
+KBTOGGLR_RUN = "kbtogglr._main._run"
 XINPUT_LIST = """
 ⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
 ⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
@@ -82,7 +82,7 @@ def test_success(tmp_path: Path, monkeypatch: Any) -> None:
     # ===========
     monkeypatch.setattr(KBTOGGLR_RUN, _run)
     monkeypatch.setattr(
-        "kbtogglr._appdirs.user_cache_dir", lambda x: str(cache_dir / x)
+        "kbtogglr._main._appdirs.user_cache_dir", lambda x: str(cache_dir / x)
     )
 
     # run tests
@@ -130,3 +130,13 @@ def test_command_not_found_error(monkeypatch: Any) -> None:
         kbtogglr.main()
 
     assert str(err.value) == "xinput: command not found..."
+
+
+def test_version(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Test ``kbtogglr.__version__``.
+
+    :param monkeypatch: Mock patch environment and attributes.
+    """
+    version = "0.1.0"
+    monkeypatch.setattr("kbtogglr.__version__", version)
+    assert kbtogglr.__version__ == version
