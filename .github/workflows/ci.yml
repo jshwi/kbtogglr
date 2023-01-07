@@ -1,4 +1,4 @@
-name: build
+name: ci
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - master
 
 jobs:
-  build:
-    name: build
+  ci:
+    name: ci
     runs-on: ubuntu-18.04
     env:
       PYAUD_GH_NAME: jshwi
@@ -21,7 +21,7 @@ jobs:
         python-version: [3.8]
 
     steps:
-    - name: Checkout build
+    - name: Checkout ci
       uses: actions/checkout@v2
 
     - name: Setup Python
