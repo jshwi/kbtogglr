@@ -4,7 +4,9 @@ kbtogglr.__main__
 
 Module entry point.
 """
-from . import main
+import sys as _sys
+
+from kbtogglr import main
 
 if __name__ == "__main__":
-    main()
+    _sys.exit(main())
