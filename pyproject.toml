@@ -29,8 +29,8 @@ fail_under = 100
 
 [tool.coverage.run]
 omit = [
-  "whitelist.py",
-  "kbtogglr/__main__.py"
+  "kbtogglr/__main__.py",
+  "whitelist.py"
 ]
 
 [tool.docsig]
@@ -48,7 +48,7 @@ use_parentheses = true
 
 [tool.poetry]
 authors = [
-    "jshwi <stephen@jshwisolutions.com>",
+  "jshwi <stephen@jshwisolutions.com>"
 ]
 description = "Toggle keyboard on and off"
 documentation = "https://kbtogglr.readthedocs.io/en/latest"
@@ -58,11 +58,11 @@ keywords = [
   "keyboard",
   "toggle",
   "usb",
-  "xinput",
+  "xinput"
 ]
 license = "MIT"
 maintainers = [
-    "jshwi <stephen@jshwisolutions.com>",
+  "jshwi <stephen@jshwisolutions.com>"
 ]
 name = "kbtogglr"
 readme = "README.rst"
@@ -145,7 +145,7 @@ addopts = [
   "--color=yes",
   "--cov-report=term-missing",
   "--durations=5",
-  "-vv",
+  "-vv"
 ]
 filterwarnings = "ignore::DeprecationWarning"
 norecursedirs = [
