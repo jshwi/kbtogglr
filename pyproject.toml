@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta:__legacy__"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 79
@@ -22,6 +22,46 @@ omit = ["whitelist.py", "kbtogglr/__main__.py"]
 exclude_lines = ['__name__ == "__main__"']
 fail_under = 100
 
+[tool.poetry]
+authors = [
+    "jshwi <stephen@jshwisolutions.com>",
+]
+description = "Toggle keyboard on and off"
+documentation = "https://kbtogglr.readthedocs.io/en/latest"
+homepage = "https://pypi.org/project/kbtogglr/"
+keywords = [
+    "hardware",
+    "keyboard",
+    "toggle",
+    "usb",
+    "xinput",
+]
+license = "MIT"
+maintainers = [
+    "jshwi <stephen@jshwisolutions.com>",
+]
+name = "kbtogglr"
+readme = "README.rst"
+repository = "https://github.com/jshwi/kbtogglr"
+version = "1.1.1"
+
+[tool.poetry.dependencies]
+appdirs = "^1.4.4"
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+bump2version = "^1.0.1"
+freezegun = "^1.2.1"
+grip = "^4.5.2"
+pyaud = "^3.13.3"
+pytest-randomly = "^3.11.0"
+pytest-sugar = "^0.9.4"
+restview = "^3.0.0"
+toml-sort = "^0.20.0"
+twine = "^4.0.0"
+
+[tool.poetry.scripts]
+kbtogglr = "kbtogglr.__main__:main"
 
 [tool.pyaud.audit]
 modules = [

@@ -23,16 +23,16 @@ jobs:
     steps:
       - name: Checkout build
         id: checkout-build
-        uses: actions/checkout@v2
-      - name: Install Pipenv
-        id: install-pipenv
-        run: pipx install pipenv
+        uses: actions/checkout@v3
+      - name: Install Poetry
+        id: install-poetry
+        run: pipx install poetry
       - name: Setup Python
         id: setup-python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-          cache: pipenv
+          cache: poetry
       - name: Setup Node
         id: setup-node
         uses: actions/setup-node@v3.5.1
@@ -41,7 +41,7 @@ jobs:
           cache: npm
       - name: Install Python Packages
         id: install-python-packages
-        run: pipenv install --dev
+        run: poetry install
       - name: Install Node Packages
         id: install-node-packages
         run: npm install
