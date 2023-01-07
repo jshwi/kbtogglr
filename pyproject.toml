@@ -80,6 +80,7 @@ pyaud = "^3.13.3"
 pylint = "2.15.9"
 pytest-randomly = "^3.11.0"
 restview = "^3.0.0"
+sphinx-toolbox = "^3.4.0"
 
 [tool.poetry.scripts]
 kbtogglr = "kbtogglr.__main__:main"
