@@ -31,7 +31,6 @@
   "scripts": {
     "audit": "npm-run-all audit:* && npm run toml:sort && npm run test:doctest:readme",
     "audit:misc": "npx prettier -c .",
-    "audit:py": "pipenv run pyaud audit --deploy --rcfile .github/pyaud.toml",
     "bump:major": "pipenv run bump2version major",
     "bump:minor": "pipenv run bump2version minor",
     "bump:patch": "pipenv run bump2version patch",
