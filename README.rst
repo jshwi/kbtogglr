@@ -30,6 +30,9 @@ kbtogglr
 .. image:: https://img.shields.io/badge/linting-pylint-yellowgreen
     :target: https://github.com/PyCQA/pylint
     :alt: pylint
+.. image:: https://snyk.io/test/github/jshwi/kbtogglr/badge.svg
+    :target: https://snyk.io/test/github/jshwi/kbtogglr/badge.svg
+    :alt: Known Vulnerabilities
 
 Toggle keyboard on and off
 --------------------------
