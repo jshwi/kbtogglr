@@ -73,11 +73,9 @@ def _get_id(value: str, output: str) -> str:
     # take the str value and parse output for its keyboard id
     for line in output.splitlines():
         if value in line:
-
             # iterate over the matching data and find the id declaration
             for split_line in line.split():
                 if "id=" in split_line:
-
                     # if a declaration of the id has been found split
                     # the id from the rest of the string
                     return split_line.split("=")[1]
