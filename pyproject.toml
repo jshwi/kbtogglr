@@ -73,7 +73,7 @@ version = "1.1.1"
 appdirs = "^1.4.4"
 python = "^3.8"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
 ipython = "^8.10.0"
 pre-commit = "^2.21.0"
