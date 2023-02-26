@@ -1,4 +1,4 @@
-sphinx-toolbox==3.2.0
+sphinx-toolbox==3.4.0
 sphinxcontrib-applehelp==1.0.4
 sphinxcontrib-devhelp==1.0.2
 sphinxcontrib-fulltoc==1.2.0
