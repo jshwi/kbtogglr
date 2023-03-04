@@ -43,8 +43,8 @@ kbtogglr
     :target: https://snyk.io/test/github/jshwi/kbtogglr/badge.svg
     :alt: Known Vulnerabilities
 .. image:: https://snyk.io/advisor/python/kbtogglr/badge.svg
-  :target: https://snyk.io/advisor/python/kbtogglr
-  :alt: kbtogglr
+    :target: https://snyk.io/advisor/python/kbtogglr
+    :alt: kbtogglr
 
 Toggle keyboard on and off
 --------------------------
