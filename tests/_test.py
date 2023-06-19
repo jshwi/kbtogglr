@@ -51,7 +51,7 @@ _mock_completed_process = _MockCompletedProcess()
 def test_success(tmp_path: Path, monkeypatch: Any) -> None:
     """Test toggling of keyboard on and off.
 
-    :param tmp_path:    Create and return temporary directory.
+    :param tmp_path: Create and return temporary directory.
     :param monkeypatch: Mock patch environment and attributes.
     """
     # set attrs
