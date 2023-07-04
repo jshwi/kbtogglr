@@ -84,7 +84,6 @@ html_theme_options = {
     "site_url": "https://kbtogglr.readthedocs.io/",
     "repo_url": "https://github.com/jshwi/kbtogglr/",
     "repo_name": "kbtogglr",
-    "repo_type": "github",
     "edit_uri": "blob/master/docs",
     "globaltoc_collapse": True,
     "features": [
